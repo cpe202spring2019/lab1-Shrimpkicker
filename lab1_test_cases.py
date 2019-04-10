@@ -4,22 +4,51 @@ from lab1 import *
  # A few test cases.  Add more!!!
 class TestLab1(unittest.TestCase):
 
-    def test_max_list_iter_wit_none_list(self):
+    def test_max_list_iter_with_all_different_values(self):
+        """tests function max_list_iter with lists of various sizes, with all unique values.
+        Simultaneously tests the function with the max value at different indexes in the lists"""
+        self.assertEqual(max_list_iter([1,2,3]), 3)
+        self.assertEqual(max_list_iter([2,3,5,4]), 5)
+        self.assertEqual(max_list_iter([3,4,7,5,6]), 7)
+        self.assertEqual(max_list_iter([1,4,2,3]), 4)
+        self.assertEqual(max_list_iter([2,1]), 2)
+
+    def test_max_list_iter_with_repetetive_values(self):
+        """tests function max_list_iter with lists of various sizes, with repetitive values.
+        Also tests the function with multiple maximum values and multiple minimum values
+        at differing indexes"""
+        self.assertEqual(max_list_iter([1,2,1]), 2)
+        self.assertEqual(max_list_iter([1,1,2]), 2)
+        self.assertEqual(max_list_iter([2,1,1]), 2)
+        self.assertEqual(max_list_iter([1,2,2,2]), 2)
+        self.assertEqual(max_list_iter([2,1,2,2]), 2)
+        self.assertEqual(max_list_iter([2,2,1,2]), 2)
+        self.assertEqual(max_list_iter([3,3]), 3)
+
+    def test_max_list_iter_with_none_list(self):
         """tests function max_list_iter with a list equal to None"""
         tlist = None
         with self.assertRaises(ValueError):  # used to check for exception
             max_list_iter(tlist)
 
+    def test_max_list_iter_with_empty_list(self):
+        """tests function max_list_iter with an empty list"""
+        tlist = []
+        self.assertEqual(max_list_iter(tlist), None)
+
     def test_reverse_rec(self):
-        #self.assertEqual(reverse_rec([1,2,3]),[3,2,1])
-        pass
+        """tests function reverse_rec with lists of various sizes"""
+        self.assertEqual(reverse_rec([1,2,3]),[3,2,1])
+        self.assertEqual(reverse_rec([1,2,3,4]), [4,3,2,1])
+        self.assertEqual(reverse_rec([3,4,5,6,7]), [7,6,5,4,3])
+        
 
     def test_bin_search(self):
-        '''list_val =[0,1,2,3,4,7,8,9,10]
+        list_val =[0,1,2,3,4,7,8,9,10]
         low = 0
         high = len(list_val)-1
-        self.assertEqual(bin_search(4, 0, len(list_val)-1, list_val), 4 )'''
-        pass
+        self.assertEqual(bin_search(4, 0, len(list_val)-1, list_val), 4 )
+        
 
 if __name__ == "__main__":
         unittest.main()
