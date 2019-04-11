@@ -42,13 +42,33 @@ class TestLab1(unittest.TestCase):
         self.assertEqual(reverse_rec([1,2,3,4]), [4,3,2,1])
         self.assertEqual(reverse_rec([3,4,5,6,7]), [7,6,5,4,3])
         
+    def test_reverse_rec_with_none_list(self):
+        """tests function reverse_rec with a list equal to None"""
+        tlist = None
+        with self.assertRaises(ValueError):
+            reverse_rec(tlist)
 
     def test_bin_search(self):
-        list_val =[0,1,2,3,4,7,8,9,10]
-        low = 0
-        high = len(list_val)-1
-        self.assertEqual(bin_search(4, 0, len(list_val)-1, list_val), 4 )
+        """tests function bin_search with one list and multiple low/high values"""
+        list_val =[0,1,2,3,4,5,6,7,8,9,10]
+        self.assertEqual(bin_search(4, 0, 10, list_val), 4)
+        self.assertEqual(bin_search(6, 0, 8, list_val), 6)
+        self.assertEqual(bin_search(8, 4, 10, list_val), 8)
         
+    def test_bin_search_with_none_list(self):
+        """tests function bin_search with a list equal to None"""
+        tlist = None
+        with self.assertRaises(ValueError):
+            bin_search(0,0,0,tlist)
+
+    def test_bin_search_with_nonexistent_values(self):
+        """tests function bin_search with values that aren't in the list and with values that aren't in the slice of the list
+        (values that aren't between the indexes high and low given"""
+        list_val = [0,2,3,5]
+        self.assertEqual(bin_search(4, 0, 3, list_val), None)
+        self.assertEqual(bin_search(1, 0, 3, list_val), None)
+        self.assertEqual(bin_search(6, 0, 3, list_val), None)
+        self.assertEqual(bin_search(5, 0, 2, list_val), None)
 
 if __name__ == "__main__":
         unittest.main()

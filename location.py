@@ -16,7 +16,7 @@ class Location:
             and self.lon == other.lon
 
     def __repr__(self):
-        return "Location({}, {}, {})".format(self.name, self.lat, self.lon)
+        return "Location('{}', {}, {})".format(self.name, self.lat, self.lon)
 
 def main():
     loc1 = Location("SLO", 35.3, -120.7)
